@@ -27,8 +27,14 @@ void Worker::start_work(void)
     cout << "[Worker #" << worker_rank << "] received: " << work_number << endl;
 
     // Perform the work
-    int result_work_number = work_number * 2;
+    int result_calculation = work_number * 2;
+    stringstream result_stringstream;
+    result_stringstream << "Result! " << result_calculation;
+    string mid = result_stringstream.str();
+    const char *result_string = mid.c_str();        
 
-    // Send back results
-    MPI_Send(&result_work_number, 1, MPI_INT, 0, 100, MPI_COMM_WORLD);
+    // Send back result length and then the result itself
+    MPI_Send((char *)result_string, strlen(result_string) + 1, MPI_CHAR, 0, 100, MPI_COMM_WORLD);
+
+    cout << "[Worker #" << worker_rank << "] Sent result: " << result_string << endl;
 }

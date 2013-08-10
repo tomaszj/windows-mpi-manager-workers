@@ -32,11 +32,11 @@ void JobManager::manage_processes(void)
     // Wait for the result for each node
     for (current_rank = 1; current_rank < world_size; current_rank++)
     {
-        int received_work_number;
+        char received_work_string[1024];
         MPI_Status status;
-        MPI_Recv(&received_work_number, 1, MPI_INT, MPI_ANY_SOURCE, 100, MPI_COMM_WORLD, &status);
 
-        cout << "[Manager] Received " << received_work_number << " from #" << status.MPI_SOURCE << endl;
+        MPI_Recv(received_work_string, 1024, MPI_CHAR, current_rank, 100, MPI_COMM_WORLD, &status);
+        cout << "[Manager] Received " << received_work_string << " from #" << status.MPI_SOURCE << endl;
     }
 
     system("pause");
