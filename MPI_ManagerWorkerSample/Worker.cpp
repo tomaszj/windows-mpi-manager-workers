@@ -27,12 +27,14 @@ void Worker::start_work(void)
     cout << "[Worker #" << worker_rank << "] received: " << work_number << endl;
 
     // Perform the work
-    // Execute external program
-    system("SimplePrinter.exe");
-
     int result_calculation = work_number * 2;
     stringstream result_stringstream;
-    result_stringstream << "Result! " << result_calculation;
+    result_stringstream << "Result! " << result_calculation << endl;
+
+    // Execute external program
+    execute_command("SimplePrinter.exe", result_stringstream);
+    
+    // Get C-string as a result
     string mid = result_stringstream.str();
     const char *result_string = mid.c_str();        
 
@@ -40,4 +42,18 @@ void Worker::start_work(void)
     MPI_Send((char *)result_string, strlen(result_string) + 1, MPI_CHAR, 0, 100, MPI_COMM_WORLD);
 
     cout << "[Worker #" << worker_rank << "] Sent result: " << result_string << endl;
+}
+
+void Worker::execute_command(char *command, iostream &output_stream)
+{
+    FILE *output_handle = _popen("SimplePrinter.exe", "r");
+    while(!feof(output_handle))
+    {
+        char buffer[128];
+        if (fgets(buffer, 128, output_handle) != NULL)
+        {   
+            output_stream << buffer;
+        }
+    }
+    fclose(output_handle);
 }

@@ -11,5 +11,8 @@ public:
 	~Worker(void);
 
 	void start_work(void);
+
+private:
+    void execute_command(char *command, std::iostream &output_stream);
 };
 
