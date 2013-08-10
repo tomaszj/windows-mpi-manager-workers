@@ -2,13 +2,19 @@
 //
 
 #include "stdafx.h"
+#include <mpi.h>
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-	system("pause");
+	// Start the MPI environment in current process
+	MPI_Init(&argc, &argv);
 
+	// Kill the MPI environment
+	MPI_Finalize();
+
+	system("pause");
 	return 0;
 }
 
