@@ -27,6 +27,9 @@ void Worker::start_work(void)
     cout << "[Worker #" << worker_rank << "] received: " << work_number << endl;
 
     // Perform the work
+    // Execute external program
+    system("SimplePrinter.exe");
+
     int result_calculation = work_number * 2;
     stringstream result_stringstream;
     result_stringstream << "Result! " << result_calculation;
