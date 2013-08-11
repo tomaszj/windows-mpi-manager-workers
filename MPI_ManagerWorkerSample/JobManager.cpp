@@ -5,6 +5,7 @@ using namespace std;
 JobManager::JobManager(char *input_filename)
 {
     m_input_filename = input_filename;
+    m_world_size = 1;
 }
 
 
@@ -14,12 +15,11 @@ JobManager::~JobManager(void)
 
 void JobManager::manage_processes(void)
 {
-	int world_size;
 	int current_rank;
 
 	// Find the amount of processes available
-	MPI_Comm_size(MPI_COMM_WORLD, &world_size);
-    cout << "[Master] Starting managing workers in pool of " << world_size << endl;
+	MPI_Comm_size(MPI_COMM_WORLD, &m_world_size);
+    cout << "[Master] Starting managing workers in pool of " << m_world_size << endl;
 
     // Setup the file and send it
     string file_input_string = read_input_file(m_input_filename);
@@ -28,7 +28,7 @@ void JobManager::manage_processes(void)
     cout << "[Master] Sent input file: " << file_input_string << endl;
 
     // Setup and send the work for each node
-	for (current_rank = 1; current_rank < world_size; current_rank++)
+	for (current_rank = 1; current_rank < m_world_size; current_rank++)
 	{
         int work_number = 333;
         MPI_Send(&work_number, 1, MPI_INT, current_rank, 100, MPI_COMM_WORLD);        
@@ -36,7 +36,7 @@ void JobManager::manage_processes(void)
 	}
 
     // Wait for the result for each node
-    for (current_rank = 1; current_rank < world_size; current_rank++)
+    for (current_rank = 1; current_rank < m_world_size; current_rank++)
     {
         char received_work_string[1024];
         MPI_Status status;

@@ -11,6 +11,7 @@
 class JobManager
 {
     char *m_input_filename;
+    int m_world_size;
 
 public:
 	JobManager(char *input_filename);
