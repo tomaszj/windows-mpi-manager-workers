@@ -30,9 +30,11 @@ void JobManager::manage_processes(void)
     // Setup and send the work for each node
 	for (current_rank = 1; current_rank < m_world_size; current_rank++)
 	{
-        int work_number = 333;
-        MPI_Send(&work_number, 1, MPI_INT, current_rank, 100, MPI_COMM_WORLD);        
-        cout << "[Manager] Sent " << work_number << " to " << current_rank << endl;
+        topo_synthesis_work_t work;
+        work.topology_index = current_rank;
+
+        MPI_Send(&work, sizeof(topo_synthesis_work_t), MPI_BYTE, current_rank, 100, MPI_COMM_WORLD);        
+        cout << "[Manager] Sent work with index #" << work.topology_index << " to " << current_rank << endl;
 	}
 
     // Wait for the result for each node

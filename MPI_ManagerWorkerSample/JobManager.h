@@ -5,7 +5,7 @@
 #include <fstream>
 #include <cassert>
 
-#include "Work.h"
+#include "TopoSynthesisWork.h"
 
 #pragma once
 class JobManager

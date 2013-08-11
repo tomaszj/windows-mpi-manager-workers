@@ -1,5 +1,4 @@
 #include "Worker.h"
-#include "Work.h"
 
 using namespace std;
 
@@ -16,7 +15,7 @@ void Worker::start_work(void)
 {
     int worker_rank;
     char input_file_buffer[1024];
-    int work_number;
+    topo_synthesis_work_t work;
     MPI_Status status;
 
     // Determine current rank
@@ -28,11 +27,11 @@ void Worker::start_work(void)
     cout << "[Worker #" << worker_rank << "] received input file: " << input_file_buffer << endl;
 
     // Receive work to be processed
-    MPI_Recv(&work_number, 1, MPI_INT, 0, 100, MPI_COMM_WORLD, &status);
-    cout << "[Worker #" << worker_rank << "] received: " << work_number << endl;
+    MPI_Recv(&work, sizeof(topo_synthesis_work_t), MPI_BYTE, 0, 100, MPI_COMM_WORLD, &status);
+    cout << "[Worker #" << worker_rank << "] received work index #" << work.topology_index << endl;
 
     // Perform the work
-    int result_calculation = work_number * 2;
+    int result_calculation = work.topology_index * 2;
     stringstream result_stringstream;
     result_stringstream << "Result! " << result_calculation << endl;
 

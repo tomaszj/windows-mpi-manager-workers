@@ -39,7 +39,7 @@
     <ClInclude Include="JobManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Work.h">
+    <ClInclude Include="TopoSynthesisWork.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

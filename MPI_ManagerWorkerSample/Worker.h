@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 
+#include "TopoSynthesisWork.h"
+
 #pragma once
 class Worker
 {
