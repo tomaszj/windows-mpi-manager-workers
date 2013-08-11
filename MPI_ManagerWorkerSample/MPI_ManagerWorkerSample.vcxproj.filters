@@ -40,7 +40,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TopoSynthesisWork.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Work</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
