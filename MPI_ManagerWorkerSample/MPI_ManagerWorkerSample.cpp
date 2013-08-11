@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
         worker.start_work();
     }
 
-	// Kill the MPI environment
+	// Kill the MPI environment in each process
 	MPI_Finalize();
 
     return 0;

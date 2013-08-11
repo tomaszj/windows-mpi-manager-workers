@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MPI_ManagerWorkerSample", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimplePrinter", "SimplePrinter\SimplePrinter.vcxproj", "{9BBEA6C1-B959-4A87-A0C9-BEF69F3E655F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleFileProcessor", "SimpleFileProcessor\SimpleFileProcessor.vcxproj", "{E06EF935-61A2-4A7E-A1F4-0DDB7C5A59B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{9BBEA6C1-B959-4A87-A0C9-BEF69F3E655F}.Debug|Win32.Build.0 = Debug|Win32
 		{9BBEA6C1-B959-4A87-A0C9-BEF69F3E655F}.Release|Win32.ActiveCfg = Release|Win32
 		{9BBEA6C1-B959-4A87-A0C9-BEF69F3E655F}.Release|Win32.Build.0 = Release|Win32
+		{E06EF935-61A2-4A7E-A1F4-0DDB7C5A59B8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E06EF935-61A2-4A7E-A1F4-0DDB7C5A59B8}.Debug|Win32.Build.0 = Debug|Win32
+		{E06EF935-61A2-4A7E-A1F4-0DDB7C5A59B8}.Release|Win32.ActiveCfg = Release|Win32
+		{E06EF935-61A2-4A7E-A1F4-0DDB7C5A59B8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,7 +36,7 @@ void Worker::start_work(void)
     result_stringstream << "Result! " << result_calculation << endl;
 
     // Execute external program
-    execute_command("SimplePrinter.exe", result_stringstream);
+    execute_command("SimpleFileProcessor.exe text_to_count.txt", result_stringstream);
     
     // Get C-string as a result
     string mid = result_stringstream.str();
