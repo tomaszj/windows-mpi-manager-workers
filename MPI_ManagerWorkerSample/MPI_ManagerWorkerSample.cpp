@@ -9,6 +9,12 @@
 
 using namespace std;
 
+/*
+ * Main entry point to the application.
+ *
+ * Accepts one argument:
+ * - input file name, which will be used as input to the topology synthesis calculations
+ */
 int main(int argc, char* argv[])
 {
 	// Start the MPI environment in current process
