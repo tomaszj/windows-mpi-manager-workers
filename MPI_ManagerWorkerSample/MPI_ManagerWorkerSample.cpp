@@ -20,7 +20,18 @@ int main(int argc, char* argv[])
 
     if (process_rank == 0)
     {
-        JobManager job_manager;
+        char *input_file_name;
+
+        if (argc >= 2)
+        {
+            input_file_name = argv[1];
+        }
+        else
+        {
+            input_file_name = "test_file.in";
+        }
+
+        JobManager job_manager(input_file_name);
         job_manager.manage_processes();
     }
     else

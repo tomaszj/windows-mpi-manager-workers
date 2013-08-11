@@ -15,6 +15,7 @@ Worker::~Worker(void)
 void Worker::start_work(void)
 {
     int worker_rank;
+    char input_file_buffer[1024];
     int work_number;
     MPI_Status status;
 
@@ -22,6 +23,10 @@ void Worker::start_work(void)
     MPI_Comm_rank(MPI_COMM_WORLD, &worker_rank);
     cout << "[Worker #" << worker_rank << "] starting work" << endl;
     
+    // Receive the input file
+    MPI_Bcast(input_file_buffer, 1024, MPI_CHAR, 0, MPI_COMM_WORLD);
+    cout << "[Worker #" << worker_rank << "] received input file: " << input_file_buffer << endl;
+
     // Receive work to be processed
     MPI_Recv(&work_number, 1, MPI_INT, 0, 100, MPI_COMM_WORLD, &status);
     cout << "[Worker #" << worker_rank << "] received: " << work_number << endl;
@@ -46,7 +51,7 @@ void Worker::start_work(void)
 
 void Worker::execute_command(char *command, iostream &output_stream)
 {
-    FILE *output_handle = _popen("SimplePrinter.exe", "r");
+    FILE *output_handle = _popen(command, "r");
     while(!feof(output_handle))
     {
         char buffer[128];
@@ -55,5 +60,6 @@ void Worker::execute_command(char *command, iostream &output_stream)
             output_stream << buffer;
         }
     }
+
     fclose(output_handle);
 }
